@@ -78,22 +78,21 @@ function getDayName(date) {
  */
 
 function getNextFriday(date) {
-    const result = new Date(date);
+  const result = new Date(date);
 
-    const currentDay = result.getDay();
+  const currentDay = result.getDay();
 
-    let daysToFriday;
-    if (currentDay < 5) {
-        daysUntilFriday = 5 - currentDay;
-    } else {
-        daysUntilFriday = 7 - (currentDay - 5);
-    }
+  let daysToFriday;
+  if (currentDay < 5) {
+    daysToFriday = 5 - currentDay;
+  } else {
+    daysToFriday = 7 - (currentDay - 5);
+  }
 
-    result.setDate(result.getDate() + daysUntilFriday);
+  result.setDate(result.getDate() + daysToFriday);
 
-    return result;
+  return result;
 }
-
 
 /**
  * Returns the number of days in a specified month and year.
@@ -106,8 +105,10 @@ function getNextFriday(date) {
  * 1, 2024 => 31
  * 2, 2024 => 29
  */
-function getCountDaysInMonth(/* month, year */) {
-  throw new Error('Not implemented');
+function getCountDaysInMonth(month, year) {
+  const nextMonth = new Date(year, month, 1);
+  const daysNumber = new Date(nextMonth - 1);
+  return lastDayOfMonth.getDate();
 }
 
 /**
