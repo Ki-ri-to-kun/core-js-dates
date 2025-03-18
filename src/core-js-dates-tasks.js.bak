@@ -317,20 +317,19 @@ function getWorkSchedule(period, countWorkDays, countOffDays) {
         workDaysRemain = countWorkDays;
       }
     } else {
-		
-	}
-    const day = String(currentDay.getUTCDate()).padStart(2, '0');
-    const month = String(currentDay.getUTCMonth() + 1).padStart(2, '0');
-    const year = currentDay.getFullYear();
+      const day = String(currentDay.getUTCDate()).padStart(2, '0');
+      const month = String(currentDay.getUTCMonth() + 1).padStart(2, '0');
+      const year = currentDay.getFullYear();
 
-    const dateString = `${day}-${month}-${year}`;
+      const dateString = `${day}-${month}-${year}`;
 
-    workDays.push(dateString);
-    workDaysRemain -= 1;
-    if (!workDaysRemain) {
-      offDaysRemain = countOffDays;
+      workDays.push(dateString);
+      workDaysRemain -= 1;
+      if (!workDaysRemain) {
+        offDaysRemain = countOffDays;
+      }
+      currentDay.setDate(currentDay.getUTCDate() + 1);
     }
-    currentDay.setDate(currentDay.getUTCDate() + 1);
   }
 
   return workDays;
@@ -348,8 +347,9 @@ function getWorkSchedule(period, countWorkDays, countOffDays) {
  * Date(2022, 2, 1) => false
  * Date(2020, 2, 1) => true
  */
-function isLeapYear(/* date */) {
-  throw new Error('Not implemented');
+function isLeapYear(date) {
+  const year = date.getFullYear();
+  return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
 }
 
 module.exports = {
